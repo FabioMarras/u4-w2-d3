@@ -49,13 +49,17 @@ public class Main {
         prodotti.stream().filter(isMoreThan100.and(sameCategory)).forEach(System.out::println);
 
         System.out.println("******* ESERCIZIO 2 *******");
-        Predicate<List<Product>> sameCategory2 = Product2 -> Product2.stream().anyMatch(product -> product.category == "baby");
+        Predicate<List<Product>> sameCategory2 = products -> products.stream().anyMatch(product -> product.category.equals("baby"));
         ordiniTotali.stream().filter(sameCategory2).forEach(System.out::println);
-        ordiniTotali.stream().anyMatch(List -> List.stream().anyMatch(product -> "baby" == product.category));
+        //ordiniTotali.stream().anyMatch(List -> List.stream().anyMatch(product -> "baby" == product.category));
 
         System.out.println("******* ESERCIZIO 3 *******");
-        Predicate<Product> sameCategory3 = Product -> Product.category == "boys";
-        prodotti.stream().filter(sameCategory3).map(Product -> Product.price * 0.9).forEach(System.out::println);
+        Predicate<Product> sameCategory3 = product -> product.category.equals("boys");
+        List<Product> xx= prodotti.stream().filter(sameCategory3).map(product -> {
+            product.setPrice(product.getPrice()*0.9);
+            return product;
+        }).toList();
+        System.out.println(xx);
 
         System.out.println("******* ESERCIZIO 4 *******");
         Predicate<Customer> sameCategory4 = Customer -> Customer.tier == 2;
