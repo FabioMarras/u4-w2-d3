@@ -11,8 +11,10 @@ public class Main {
         Product Libro1 = Product.Libro;
         Product Libro2 = Product.Libro2;
         Product Libro3 = Product.Libro3;
+        Product forBoys = Product.forBoys;
+        Product forBoys1 = Product.forBoys1;
 
-        List<Product> prodotti = new ArrayList<>(List.of(Shampo, toy1, Libro1, Libro2, Libro3));
+        List<Product> prodotti = new ArrayList<>(List.of(Shampo, toy1, Libro1, Libro2, Libro3, forBoys, forBoys1));
 
         List<Product> ordine1 = new ArrayList<>();
         ordine1.add(Shampo);
@@ -32,10 +34,14 @@ public class Main {
         ordiniTotali.add(ordine3);
 
         Customer Fabio = new Customer(10L, "Fabio", 1);
+        Customer Andrea = new Customer(11L, "Andrea", 2);
+        Customer Giuseppe = new Customer(12L, "Giuseppe", 2);
 
         Order primo = new Order(99L, "pending", LocalDate.of(2023, 10, 11), LocalDate.of(2023, 10, 20), ordine1, Fabio);
         //System.out.println(primo);
         //System.out.println(prodotti);
+        Order secondo = new Order(101L, "pending", LocalDate.of(2021, 1, 1), LocalDate.of(2023, 10, 20), ordine1, Andrea);
+        Order terzo = new Order(102L, "pending", LocalDate.of(2021, 3, 11), LocalDate.of(2021, 3, 20), ordine1, Giuseppe);
 
         System.out.println("******* ESERCIZIO 1 *******");
         Predicate<Product> isMoreThan100 = Product -> Product.price > 100;
@@ -48,5 +54,10 @@ public class Main {
         ordiniTotali.stream().anyMatch(List -> List.stream().anyMatch(product -> "baby" == product.category));
 
         System.out.println("******* ESERCIZIO 3 *******");
+        Predicate<Product> sameCategory3 = Product -> Product.category == "boys";
+        prodotti.stream().filter(sameCategory3).map(Product -> Product.price * 0.9).forEach(System.out::println);
+
+        System.out.println("******* ESERCIZIO 4 *******");
+        Predicate<Customer> sameCategory4 = Customer -> Customer.tier == 2;
     }
 }

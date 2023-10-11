@@ -26,6 +26,8 @@ public class Product {
     static Product Libro2 = new Product(3L, "book2", "book", 19.9);
     static Product Libro3 = new Product(4L, "book3", "book", 190.9);
     static Product toy1 = new Product(5L, "toy1", "baby", 241.7);
+    static Product forBoys = new Product(5L, "gameBoy", "boys", 120.7);
+    static Product forBoys1 = new Product(5L, "PSP", "boys", 220.7);
 
     public Product getShampo2() {
         return Shampo2;
